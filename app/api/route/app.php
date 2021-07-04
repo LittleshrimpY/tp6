@@ -10,14 +10,14 @@ Route::group(':version/banner', function () {
 
     Route::get(':id', ':version.Banner/getBanner');
 
-})->https();
+});
 
 Route::group(':version/theme', function () {
 
     Route::get('', ':version.Theme/getSimpleList');
     Route::get(':id', ':version.Theme/getComplexOne');
 
-})->https();
+});
 
 Route::group(':version/product', function () {
 
@@ -26,19 +26,20 @@ Route::group(':version/product', function () {
     Route::get(':id', ':version.Product/getProductDetail');
     Route::get('/hot', ':version.Product/getHotToProduct');
 
-})->https();
+});
 
 
 Route::group(':version/category', function () {
 
     Route::get('', ':version.Category/getAllCategories');
-})->https();
+});
 
 Route::group(':version/token', function () {
 
     Route::post('/user', ':version.Token/getToken');
+    Route::post('/verify',':version.Token/verifyToken');
 
-})->https();
+});
 
 Route::group(':version/address', function () {
 
@@ -46,7 +47,7 @@ Route::group(':version/address', function () {
     Route::post('up', ':version.Address/updataAddress');
     Route::get('', ':version.Address/getAddress');
 
-})->https();
+});
 
 Route::group(':version/order', function () {
 
@@ -54,14 +55,14 @@ Route::group(':version/order', function () {
     Route::get('by_user', ':version.Order/getOrderByUser');
     Route::get('by_order', ':version.Order/getDetail');
 
-})->https();
+});
 
 Route::group(':version/pay', function () {
 
     Route::post('', ':version.Pay/pay');
     Route::post('notify', ':version.Pay/receiveNotify');
 
-})->https();
+});
 
 
 Route::get(':version/banner/get/info', ':version.Banner/getInfo');

@@ -14,10 +14,7 @@ use app\middleware\Check;
 
 class Address
 {
-    protected $middleware = [
-//        Check::class . '' => ['except' => ['getAddress']],
-        Check::class
-    ];
+    protected $middleware = [Check::class];
 
     public function addAddress()
     {

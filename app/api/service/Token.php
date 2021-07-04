@@ -72,4 +72,14 @@ class Token
     {
         return self::getCurrentTokenVar('uid');
     }
+
+    public static function verifyToken($token)
+    {
+        $exist = Cache::get($token);
+        if ($exist) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
