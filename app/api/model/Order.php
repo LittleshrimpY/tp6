@@ -3,7 +3,6 @@
 
 namespace app\api\model;
 
-
 use app\api\service\Token;
 use think\Model;
 
@@ -36,15 +35,25 @@ class Order extends Model
         $data = self::where('user_id', '=', $uid)
             ->order('id', 'asc')
             ->hidden(['user_id', 'update_time', 'delete_time', 'snap_items', 'snap_address', 'prepay_id'])
-            ->paginate(['page' => $page, 'list_rows' => $size], true);
+            ->paginate(['page' => $page, 'list_rows' => $size], false);
         if ($data->isEmpty()) {
             return [
                 'data' => $data,
+                'current_page' => $data->currentPage(),
             ];
         }
         return [
             'data' => $data,
+            'current_page' => $data->currentPage(),
         ];
+    }
+
+    public static function getSummaryByPage($page, $size)
+    {
+        $data = self::order('id', 'asc')
+            ->hidden(['user_id', 'update_time', 'delete_time', 'snap_items', 'snap_address', 'prepay_id'])
+            ->paginate(['page' => $page, 'list_rows' => $size], false);
+       return $data;
     }
 
     public static function getDetail($id)

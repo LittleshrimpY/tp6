@@ -33,6 +33,13 @@ class Order
         return json($data,200);
     }
 
+    public function getAllOrder($page = 1, $size = 15)
+    {
+        (new PagingParameter())->goCheck();
+        $data = OrderModel::getSummaryByPage($page, $size);
+        return json($data,200);
+    }
+
     public function getDetail($id='')
     {
         (new IDMustBePostiveInt())->goCheck();

@@ -3,7 +3,7 @@
 use think\facade\Route;
 
 Route::pattern([
-    'id'   => '\d+',
+    'id' => '\d+',
 ]);
 
 Route::group(':version/banner', function () {
@@ -37,7 +37,8 @@ Route::group(':version/category', function () {
 Route::group(':version/token', function () {
 
     Route::post('/user', ':version.Token/getToken');
-    Route::post('/verify',':version.Token/verifyToken');
+    Route::post('/verify', ':version.Token/verifyToken');
+    Route::post('/app',':version.Token/getAppToken');
 
 });
 
@@ -54,6 +55,7 @@ Route::group(':version/order', function () {
     Route::post('', ':version.Order/placeOrder');
     Route::get('by_user', ':version.Order/getOrderByUser');
     Route::get('by_order', ':version.Order/getDetail');
+    Route::get('paginate',':version.Order/getAllOrder');
 
 });
 

@@ -4,8 +4,7 @@
 namespace app\api\service;
 
 
-use app\api\model\Address as AddressModel;
-use app\api\model\AddressDetail as AddressDetailModel;
+use app\api\model\UserAddress as UserAddressModel;
 use app\api\model\OrderProduct as OrderProductModel;
 use app\api\model\Product as ProductModel;
 use app\api\model\Order as OrderModel;
@@ -175,27 +174,19 @@ class Order
         return $snap;
     }
 
-    private function getUserAddress($uid, $aid = 35)
+    private function getUserAddress($uid, $aid=35)
     {
-        $address = AddressModel::where('user_id', '=', $uid)->find();
-        $addressDetail = AddressDetailModel::where('address_id', '=', $address->id)
-            ->where('delete_time', '=', '')
-            ->where('id', '=', $aid)
+        $address = UserAddressModel::where('user_id', '=', $uid)
+            ->where('delete_time', '=', null)
             ->visible(
                 ['name', 'mobile', 'province', 'city', 'country', 'detail']
-            )
-            ->find();
+            )->find();
         if (!$address) {
             throw new AddressException([
                 'message' => '用户未定义地址',
             ]);
         }
-        if (!$addressDetail) {
-            throw new AddressException([
-                'message' => '用户地址无效',
-            ]);
-        }
-        return $addressDetail->toArray();
+        return $address;
     }
 
     private function getProductsByOder($orderProducts)
