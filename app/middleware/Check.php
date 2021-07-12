@@ -4,7 +4,6 @@ namespace app\middleware;
 
 use app\api\service\Token;
 use app\lib\exception\ScopeException;
-use think\facade\Request;
 
 class Check
 {
@@ -20,7 +19,7 @@ class Check
         $scope = Token::getCurrentTokenVar('scope');
         if ($scope >= 16) {
             return $next($request);
-        }else{
+        } else {
             throw new ScopeException();
         }
     }

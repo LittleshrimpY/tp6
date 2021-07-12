@@ -11,10 +11,11 @@ use app\lib\exception\AddressException;
 use app\lib\exception\SuccessMessage;
 use app\api\model\UserAddress as UserAddressModel;
 use app\middleware\Check;
+use app\middleware\CheckApiSign;
 
 class Address
 {
-    protected $middleware = [Check::class];
+    protected $middleware = [CheckApiSign::class,Check::class];
 
     public function addAddress()
     {

@@ -14,7 +14,7 @@ class UserAddress extends BaseModel
 
     public static function getAddressByUser($uid)
     {
-        return self::where('user_id', '=', $uid)->select()->toArray();
+        return self::where('user_id', '=', $uid)->find();
     }
 
     public function addAddress($data)
