@@ -24,7 +24,7 @@ class UserAddress extends BaseModel
 
     public function upAddress($data)
     {
-        $addressInfo = self::where('id', '=', $data['id'])->find();
+        $addressInfo = self::where('user_id', '=', $data['user_id'])->find();
         $addressInfo->save($data);
     }
 }

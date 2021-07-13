@@ -7,7 +7,6 @@ namespace app\api\validate;
 class AddressUp extends BaseValidate
 {
     protected $rule = [
-        'id' => 'require|isPostiveInteger',
         'name' => 'require|isNotEmpty',
         'mobile' => 'require|mobile',
         'province' => 'require|isNotEmpty',

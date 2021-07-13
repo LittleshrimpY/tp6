@@ -39,11 +39,12 @@ class Address
 
     public function upAddress()
     {
+        $uid = TokenService::getCurrentUid();
         $addressUp = new AddressUp();
         $addressUp->goCheck();
         $arrays = input('post.');
         $data = $addressUp->getDataByRule($arrays);
-
+        $data['user_id'] = $uid;
         (new UserAddressModel())->upAddress($data);
 
         throw new SuccessMessage([

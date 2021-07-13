@@ -45,7 +45,7 @@ Route::group(':version/token', function () {
 Route::group(':version/address', function () {
 
     Route::post('add', ':version.Address/addAddress');
-    Route::post('up', ':version.Address/updataAddress');
+    Route::post('up', ':version.Address/upAddress');
     Route::get('', ':version.Address/getAddress');
 
 });
